@@ -18,7 +18,7 @@ def predict_price(area) -> float:
     response = requests.get(TRAIN_DATA_URL)
     data=response.text
     df = pandas.read_json(data, orient='records')
-    slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
+    slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(x,y)
     xx=[ intercept+slope*area[i] for i in range(len(area)) ]
     return xx
 
